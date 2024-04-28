@@ -1,0 +1,17 @@
+# robot.txt içeriğini kontrol eden YAML dosyası
+file_path: "./robot.txt"
+
+content: "{{ lookup('file', file_path) | int }}"
+
+count: "{{ content | default(0) | int + 1 }}"
+
+- name: Write count to robot.txt
+  copy:
+    content: "{{ count }}"
+    dest: "{{ file_path }}"
+
+- name: Commit changes
+  shell: bash
+  run: |
+    git add "{{ file_path }}"
+    git commit -m "Değişiklik yapıldı" "{{ file_path }}"
