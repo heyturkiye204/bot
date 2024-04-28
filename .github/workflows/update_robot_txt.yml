@@ -30,4 +30,3 @@ jobs:
         git add .
         git commit -m "Değişiklik yapıldı"
         git push
-
